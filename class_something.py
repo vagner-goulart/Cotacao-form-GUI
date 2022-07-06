@@ -150,5 +150,3 @@ root_w.grid_columnconfigure(0, weight=1)
 root_w.grid_rowconfigure(1, weight=1)
 
 root_w.mainloop()
-
-"this is a test to git"
