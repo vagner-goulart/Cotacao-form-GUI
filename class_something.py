@@ -23,8 +23,6 @@ class EntryFieldForm(Frame):
     def __init__(self, window, entry_field_display_text = None, **kwargs):
         super().__init__(window, **kwargs)
 
-        widget_size = 20
-
         #TODO: using for debugging, remove later
         self.config(bg=grey_color, borderwidth=5)
 
@@ -34,13 +32,11 @@ class EntryFieldForm(Frame):
 
         # changing configuration for widgets
         self.text_label.config(
-            #width=widget_size,
             font=font_definitions,
             text=entry_field_display_text +": "
         )
 
         self.entry_box.config(
-            #width=widget_size + 3,
             font=font_definitions
         )
 
@@ -60,9 +56,6 @@ class EntryFieldForm(Frame):
         )
 
         self.grid_columnconfigure(0, weight=1)
-        #self.grid_columnconfigure(1, weight=1)
-        # when i uncoment this above, the entry box expands
-        # somehow, the entry box has a fixed size ???
         self.grid_rowconfigure(0,weight=1)
 
 
