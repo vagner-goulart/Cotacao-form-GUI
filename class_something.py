@@ -108,12 +108,8 @@ entry_fields = [
     entrega_zona_rural_entry_field
 ]
 
-#entry_fields_frame.grid_columnconfigure(0, weight=1)
-
 for entry_field in entry_fields:
     entry_field_index = entry_fields.index(entry_field)
-
-    entry_fields_frame.grid_rowconfigure(entry_field_index, weight=1)
 
     entry_field.grid(row=entry_field_index, sticky=EW)
     
