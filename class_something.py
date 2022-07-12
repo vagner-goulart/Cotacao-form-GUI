@@ -30,6 +30,9 @@ class EntryFieldForm(Frame):
         self.text_label = Label(self)
         self.entry_box = Entry(self)
 
+        # Creating a variable to hold the entr widget text
+        self.text_variable = StringVar(self.entry_box)
+
         # changing configuration for widgets
         self.text_label.config(
             font=font_definitions,
@@ -37,7 +40,8 @@ class EntryFieldForm(Frame):
         )
 
         self.entry_box.config(
-            font=font_definitions
+            font=font_definitions,
+            textvariable=self.text_variable
         )
 
         # placing widgets on the grid inside the frame
