@@ -122,12 +122,12 @@ for entry_field in entry_fields:
 #TODO: using for debugging, remove later
 buttons_frame = Frame(root_w, borderwidth=5, bg=blue_color)
 
-botao_1 = FinishingButton(buttons_frame, "APAGAR")
+button_delete = FinishingButton(buttons_frame, "APAGAR")
 
-botao_2 = FinishingButton(buttons_frame, "COPIAR")
+button_copy = FinishingButton(buttons_frame, "COPIAR")
 
-botao_1.grid(row=0, column=0)
-botao_2.grid(row=0, column=1)
+button_delete.grid(row=0, column=0)
+button_copy.grid(row=0, column=1)
 
 buttons_frame.grid_rowconfigure(0, weight=1)
 buttons_frame.grid_columnconfigure(0, weight=1)
