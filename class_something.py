@@ -62,6 +62,12 @@ class EntryFieldForm(Frame):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0,weight=1)
 
+    def get_entry_text(self):
+        return self.text_variable.get()
+
+    def set_entry_text(self, text):
+        self.text_variable.set(text)
+
 
 
 class FinishingButton(Button):
