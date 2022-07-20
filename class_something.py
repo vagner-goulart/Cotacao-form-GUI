@@ -68,8 +68,6 @@ class EntryFieldForm(Frame):
     def set_entry_text(self, text):
         self.text_variable.set(text)
 
-
-
 class FinishingButton(Button):
     def __init__(self, window, button_display_text, **kwargs):
         super().__init__(window, **kwargs)
