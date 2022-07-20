@@ -84,6 +84,21 @@ class FinishingButton(Button):
             font=font_definitions
         )
 
+class CnpjEntry(EntryFieldForm):
+    def __init__(self, window, label_text, **kwargs):
+        super().__init__(window, label_text, **kwargs)
+
+class MoneyEntry(EntryFieldForm):
+    def __init__(self, window, label_text, **kwargs):
+        super().__init__(window, label_text, **kwargs)
+
+class QuantityEntry(EntryFieldForm):
+    def __init__(self, window, label_text, **kwargs):
+        super().__init__(window, label_text, **kwargs)
+
+class TextEntry(EntryFieldForm):
+    def __init__(self, window, label_text, **kwargs):
+        super().__init__(window, label_text, **kwargs)
 
 #TODO: using for debugging, remove later
 entry_fields_frame = Frame(root_w, bg=red_color)
