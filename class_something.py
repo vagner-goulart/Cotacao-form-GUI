@@ -104,21 +104,21 @@ class TextEntry(EntryFieldForm):
 entry_fields_frame = Frame(root_w, bg=red_color)
 entry_fields_frame.config(borderwidth=10)
 
-cnpj_remetente_entry_field = EntryFieldForm(entry_fields_frame, "CNPJ REMETENTE")
+cnpj_remetente_entry_field = CnpjEntry(entry_fields_frame, "CNPJ REMETENTE")
 
-cnpj_destino_entry_field= EntryFieldForm(entry_fields_frame, "CNPJ DESTINATARIO")
+cnpj_destino_entry_field= CnpjEntry(entry_fields_frame, "CNPJ DESTINATARIO")
 
-valor_nota_entry_field = EntryFieldForm(entry_fields_frame, "VALOR DA NOTA")
+valor_nota_entry_field = MoneyEntry(entry_fields_frame, "VALOR DA NOTA")
 
-peso_entry_field = EntryFieldForm(entry_fields_frame, "PESO")
+peso_entry_field = QuantityEntry(entry_fields_frame, "PESO")
 
-volume_entry_field = EntryFieldForm(entry_fields_frame, "VOLUME")
+volume_entry_field = QuantityEntry(entry_fields_frame, "VOLUME")
 
-medidas_entry_field = EntryFieldForm(entry_fields_frame, "MEDIDAS")
+medidas_entry_field = QuantityEntry(entry_fields_frame, "MEDIDAS")
 
-pagador_frete_entry_field = EntryFieldForm(entry_fields_frame, "PAGADOR DO FRETE")
+pagador_frete_entry_field = TextEntry(entry_fields_frame, "PAGADOR DO FRETE")
 
-entrega_zona_rural_entry_field = EntryFieldForm(entry_fields_frame, "ZONA RURAL")
+entrega_zona_rural_entry_field = TextEntry(entry_fields_frame, "ZONA RURAL")
 
 entry_fields = [
     cnpj_remetente_entry_field,
