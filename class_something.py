@@ -98,6 +98,15 @@ class CnpjEntry(EntryFieldForm):
         )
 
     def validade_entry(self, entry_text_plus_new_char):
+
+        """
+        This will check if the new char can be added or removed from the entry.
+        Ther rules are:
+            - it must be a digit
+            - the entry cannot exceed 14 digits
+            - the entry can be blank
+        """
+
         text_size = len(entry_text_plus_new_char)
 
         entry_is_digit = entry_text_plus_new_char.isdigit()
