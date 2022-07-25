@@ -13,6 +13,7 @@ font_size = 20
 font_kind = 'bold'
 font_definitions = (font_type, font_size, font_kind)
 
+CNPJ_CHAR_QUANTITY = 14
 
 root_w = Tk()
 #TODO: using for debugging, remove later
@@ -85,8 +86,33 @@ class FinishingButton(Button):
         )
 
 class CnpjEntry(EntryFieldForm):
+    
     def __init__(self, window, label_text, **kwargs):
         super().__init__(window, label_text, **kwargs)
+
+        cnpj_validate_command = (root_w.register(self.validade_entry), '%P')
+
+        self.entry_box.config(
+            validate='key', # this will invoke the validate command when a key is pressed
+            validatecommand= cnpj_validate_command
+        )
+
+    def validade_entry(self, entry_text_plus_new_char):
+        text_size = len(entry_text_plus_new_char)
+
+        entry_is_digit = entry_text_plus_new_char.isdigit()
+        entry_is_less_than_14_chars = text_size <= CNPJ_CHAR_QUANTITY
+        entry_is_empty = text_size == 0
+
+        entry_is_valid = entry_is_less_than_14_chars and (
+            entry_is_digit or entry_is_empty
+            )
+
+        if entry_is_valid:
+            return True
+        else:
+            return False
+
 
 class MoneyEntry(EntryFieldForm):
     def __init__(self, window, label_text, **kwargs):
