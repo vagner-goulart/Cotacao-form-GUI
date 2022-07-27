@@ -14,6 +14,9 @@ font_kind = 'bold'
 font_definitions = (font_type, font_size, font_kind)
 
 CNPJ_CHAR_QUANTITY = 14
+MONEY_CHAR_QUANTITY = 10
+QUANTITY_CHAR_QUANTITY = 10
+TEXT_CHAR_QUANTITY = 50
 
 root_w = Tk()
 #TODO: using for debugging, remove later
