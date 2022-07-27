@@ -166,6 +166,38 @@ class QuantityEntry(EntryFieldForm):
     def __init__(self, window, label_text, **kwargs):
         super().__init__(window, label_text, **kwargs)
 
+        quant_validate_command = (root_w.register(self.validade_entry), '%P')
+
+        self.entry_box.config(
+            validate='key', # this will invoke the validate command when a key is pressed
+            validatecommand= quant_validate_command
+        )
+
+    def validade_entry(self, entry_text_plus_new_char):
+
+        """
+        This will check if the new char can be added or removed from the entry.
+        Ther rules are:
+            - it must be a digit
+            - the entry cannot exceed 10 digits
+            - the entry can be blank
+        """
+
+        text_size = len(entry_text_plus_new_char)
+
+        entry_is_digit = entry_text_plus_new_char.isdigit()
+        entry_is_less_than_10_chars = text_size <= QUANTITY_CHAR_QUANTITY
+        entry_is_empty = text_size == 0
+
+        entry_is_valid = entry_is_less_than_10_chars and (
+            entry_is_digit or entry_is_empty
+            )
+
+        if entry_is_valid:
+            return True
+        else:
+            return False
+
 class TextEntry(EntryFieldForm):
     def __init__(self, window, label_text, **kwargs):
         super().__init__(window, label_text, **kwargs)
