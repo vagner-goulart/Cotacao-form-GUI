@@ -202,6 +202,31 @@ class TextEntry(EntryFieldForm):
     def __init__(self, window, label_text, **kwargs):
         super().__init__(window, label_text, **kwargs)
 
+        text_validate_command = (root_w.register(self.validade_entry), '%P')
+
+        self.entry_box.config(
+            validate='key', # this will invoke the validate command when a key is pressed
+            validatecommand= text_validate_command
+        )
+
+    def validade_entry(self, entry_text_plus_new_char):
+
+        """
+        This will check if the new char can be added or removed from the entry.
+        Ther rules are:
+            - The entry cannot exceed 50 chars
+        """
+
+        entry_length = len(entry_text_plus_new_char)
+
+        entry_is_less_than_50_chars = entry_length <= TEXT_CHAR_QUANTITY
+
+        if entry_is_less_than_50_chars:
+            return True
+        else:
+            return False
+
+
 #TODO: using for debugging, remove later
 entry_fields_frame = Frame(root_w, bg=red_color)
 entry_fields_frame.config(borderwidth=10)
