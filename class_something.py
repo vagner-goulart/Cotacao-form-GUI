@@ -254,7 +254,7 @@ pagador_frete_entry_field = TextEntry(entry_fields_frame, "PAGADOR DO FRETE")
 
 entrega_zona_rural_entry_field = TextEntry(entry_fields_frame, "ZONA RURAL")
 
-entry_fields = [
+entry_fields_list = [
     cnpj_remetente_entry_field,
     cnpj_destino_entry_field,
     valor_nota_entry_field,
@@ -265,8 +265,8 @@ entry_fields = [
     entrega_zona_rural_entry_field
 ]
 
-for entry_field in entry_fields:
-    entry_field_index = entry_fields.index(entry_field)
+for entry_field in entry_fields_list:
+    entry_field_index = entry_fields_list.index(entry_field)
 
     entry_field.grid(row=entry_field_index, sticky=EW)
     
