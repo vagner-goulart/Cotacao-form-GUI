@@ -270,6 +270,10 @@ for entry_field in entry_fields_list:
 
     entry_field.grid(row=entry_field_index, sticky=EW)
     
+# TODO: This seems odd. It doesn't feel right
+def clear_text_from_all_entry_fields():
+    for entry in entry_fields_list:
+        entry.clear_entry_field_text()
 
 
 #TODO: using for debugging, remove later
