@@ -73,6 +73,9 @@ class EntryFieldForm(Frame):
     def set_entry_text(self, text):
         self.text_variable.set(text)
 
+    def clear_entry_field_text(self):
+        self.text_variable.set("")
+
 class FinishingButton(Button):
     def __init__(self, window, button_display_text, **kwargs):
         super().__init__(window, **kwargs)
@@ -88,6 +91,9 @@ class FinishingButton(Button):
             borderwidth=border_size,
             font=font_definitions
         )
+
+    def function_to_call_when_pressed(self, function_address):
+        self.config(command=function_address)
 
 class CnpjEntry(EntryFieldForm):
     
