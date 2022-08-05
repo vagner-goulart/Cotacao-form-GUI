@@ -298,6 +298,11 @@ button_delete = FinishingButton(buttons_frame, "APAGAR")
 
 button_copy = FinishingButton(buttons_frame, "COPIAR")
 
+button_delete.function_to_call_when_pressed(clear_text_from_all_entry_fields)
+
+button_copy.function_to_call_when_pressed(copy_text_from_all_entry_fields)
+
+
 # TODO: Add comments to explain these grids
 
 button_delete.grid(row=0, column=0)
