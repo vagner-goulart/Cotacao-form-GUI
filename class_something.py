@@ -275,6 +275,21 @@ def clear_text_from_all_entry_fields():
     for entry in entry_fields_list:
         entry.clear_entry_field_text()
 
+def copy_text_from_all_entry_fields():
+    final_text = ""
+
+    for entry in entry_fields_list:
+        entry_name = entry.text_label.cget('text')
+        entry_text = entry.get_entry_text() + "\n"
+
+        final_text += entry_name + entry_text
+    else: # This removes the last '\n' which adds a new line
+        final_text = final_text[:-1]
+
+    # for the moment it will only print the result
+    # don't want to fill my clipboard with it
+    print(final_text)
+
 
 #TODO: using for debugging, remove later
 buttons_frame = Frame(root_w, borderwidth=5, bg=blue_color)
