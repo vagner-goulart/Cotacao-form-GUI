@@ -35,7 +35,8 @@ class EntryFieldForm(Frame):
         self.entry_box = Entry(self)
 
         # Creating a variable to hold the entr widget text
-        self.text_variable = StringVar(self.entry_box)
+        # TODO: Remove this starting value, it is here for tests only
+        self.text_variable = StringVar(self.entry_box, value="test")
 
         # changing configuration for widgets
         self.text_label.config(
@@ -271,6 +272,8 @@ buttons_frame = Frame(root_w, borderwidth=5, bg=blue_color)
 button_delete = FinishingButton(buttons_frame, "APAGAR")
 
 button_copy = FinishingButton(buttons_frame, "COPIAR")
+
+# TODO: Add comments to explain these grids
 
 button_delete.grid(row=0, column=0)
 button_copy.grid(row=0, column=1)
