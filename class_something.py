@@ -35,7 +35,7 @@ class EntryFieldForm(Frame):
         super().__init__(window, **kwargs)
 
         #TODO: using for debugging, remove later
-        self.config(bg=grey_color, borderwidth=5)
+        self.config(bg=custom_colors_dict['queen_blue'], borderwidth=2)
 
         # initializing the widgets inside the frame
         self.text_label = Label(self)
@@ -48,12 +48,15 @@ class EntryFieldForm(Frame):
         # changing configuration for widgets
         self.text_label.config(
             font=font_definitions,
-            text=entry_field_display_text +": "
+            text=entry_field_display_text +": ",
+            borderwidth=1,
+            bg=custom_colors_dict["blizzard_blue"]
         )
 
         self.entry_box.config(
             font=font_definitions,
-            textvariable=self.text_variable
+            textvariable=self.text_variable,
+            bg=custom_colors_dict['light_cyan']
         )
 
         # placing widgets on the grid inside the frame
@@ -62,7 +65,7 @@ class EntryFieldForm(Frame):
             row=0,
             column=0,
             sticky=EW,
-            padx=(0,10)
+            padx=(0,3)
         )
 
         self.entry_box.grid(
@@ -294,11 +297,13 @@ def copy_text_from_all_entry_fields():
 
 
 #TODO: using for debugging, remove later
-buttons_frame = Frame(root_w, borderwidth=5, bg=blue_color)
+buttons_frame = Frame(root_w, borderwidth=1, bg=custom_colors_dict['oxfor_blue'])
 
 button_delete = FinishingButton(buttons_frame, "APAGAR")
+button_delete.config(bg=custom_colors_dict['fire_engine'])
 
 button_copy = FinishingButton(buttons_frame, "COPIAR")
+button_copy.config(bg=custom_colors_dict['pakistan_green'])
 
 button_delete.function_to_call_when_pressed(clear_text_from_all_entry_fields)
 
