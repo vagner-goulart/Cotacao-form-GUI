@@ -298,10 +298,10 @@ def copy_text_from_all_entry_fields():
 buttons_frame = Frame(root_w, borderwidth=1, bg=custom_colors_dict['oxfor_blue'])
 
 button_delete = FinishingButton(buttons_frame, "APAGAR")
-button_delete.config(bg=custom_colors_dict['fire_engine'])
+button_delete.config(takefocus=False, bg=custom_colors_dict['fire_engine'])
 
 button_copy = FinishingButton(buttons_frame, "COPIAR")
-button_copy.config(bg=custom_colors_dict['pakistan_green'])
+button_copy.config(takefocus=False, bg=custom_colors_dict['pakistan_green'])
 
 button_delete.function_to_call_when_pressed(clear_text_from_all_entry_fields)
 
