@@ -342,6 +342,22 @@ def terminate_entry_focus(bar):
     if not_a_entry:
         root_w.focus_set()
 
+def focus_on_next_widget(event):
+    current_widget_with_focus = event.widget
+
+    next_widget_to_focus = current_widget_with_focus.tk_focusNext()
+
+    next_widget_to_focus.focus_set()
+
+def focus_on_previous_widget(event):
+    current_widget_with_focus = event.widget
+
+    prev_widget_to_focus = current_widget_with_focus.tk_focusPrev()
+
+    prev_widget_to_focus.focus_set()
+
 root_w.bind('<Button-1>', terminate_entry_focus)
+root_w.bind('<Up>', focus_on_previous_widget)
+root_w.bind('<Down>', focus_on_next_widget)
 
 root_w.mainloop()
