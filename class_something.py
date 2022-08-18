@@ -15,12 +15,10 @@ font_definitions = (font_type, font_size, font_kind)
 
 CNPJ_CHAR_QUANTITY = 14
 MONEY_CHAR_QUANTITY = 10
-QUANTITY_CHAR_QUANTITY = 10
+QUANTITY_CHAR_QUANTITY = 10 #TODO: rename this variable
 TEXT_CHAR_QUANTITY = 50
 
 root_w = Tk()
-#TODO: using for debugging, remove later
-root_w.config(bg=light_grey_color)
 
 
 class EntryFieldForm(Frame):
@@ -80,13 +78,11 @@ class FinishingButton(Button):
     def __init__(self, window, button_display_text, **kwargs):
         super().__init__(window, **kwargs)
 
-        #TODO: using for debugging, remove later
-        background_color = 'light green'
-
         border_size = 3
 
         self.config(
-            bg=background_color,
+            #TODO: review this color later
+            fg="white",
             text=button_display_text,
             borderwidth=border_size,
             font=font_definitions
@@ -131,7 +127,6 @@ class CnpjEntry(EntryFieldForm):
             return True
         else:
             return False
-
 
 class MoneyEntry(EntryFieldForm):
     def __init__(self, window, label_text, **kwargs):
@@ -234,9 +229,7 @@ class TextEntry(EntryFieldForm):
             return False
 
 
-#TODO: using for debugging, remove later
-entry_fields_frame = Frame(root_w, bg=red_color)
-entry_fields_frame.config(borderwidth=10)
+entry_fields_frame = Frame(root_w)
 
 cnpj_remetente_entry_field = CnpjEntry(entry_fields_frame, "CNPJ REMETENTE")
 
@@ -303,22 +296,30 @@ button_delete.function_to_call_when_pressed(clear_text_from_all_entry_fields)
 button_copy.function_to_call_when_pressed(copy_text_from_all_entry_fields)
 
 
-# TODO: Add comments to explain these grids
-
+# Both buttons on the same row, diferent columns
 button_delete.grid(row=0, column=0)
 button_copy.grid(row=0, column=1)
 
+# This places the buttons on the middle of its space at the grid
 buttons_frame.grid_rowconfigure(0, weight=1)
 buttons_frame.grid_columnconfigure(0, weight=1)
 buttons_frame.grid_columnconfigure(1, weight=1)
 
+# This allows the widgets to expand inside the frame
 entry_fields_frame.grid_columnconfigure(0, weight=1)
 
+# This stretches both widgets horizontally on the screen
 entry_fields_frame.grid(row=0, column=0, sticky=EW)
 buttons_frame.grid(row=1, column=0, sticky=EW)
 
-root_w.grid_rowconfigure(0, weight=1)
-root_w.grid_columnconfigure(0, weight=1)
-root_w.grid_rowconfigure(1, weight=1)
+#TODO: if the main window will have a fixed size, this is not needed
+# root_w.grid_columnconfigure(0, weight=1)
+# root_w.grid_rowconfigure(0, weight=1)
+# root_w.grid_rowconfigure(1, weight=1)
+
+#TODO: using for debugging, remove later
+root_w.update()
+print(root_w.winfo_geometry())
+
 
 root_w.mainloop()
