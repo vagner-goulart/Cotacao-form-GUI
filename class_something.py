@@ -76,6 +76,9 @@ class EntryFieldForm(Frame):
     def set_entry_text(self, text):
         self.text_variable.set(text)
 
+    def get_frame_name(self):
+        return self.winfo_name()
+
     def clear_entry_field_text(self):
         self.text_variable.set("")
 
