@@ -24,8 +24,8 @@ root_w = Tk()
 
 
 class EntryFieldForm(Frame):
-    def __init__(self, window, label_text, **kwargs):
-        super().__init__(window, **kwargs)
+    def __init__(self, window, label_text, frame_name, **kwargs):
+        super().__init__(window, name= frame_name, **kwargs)
 
         #TODO: using for debugging, remove later
         self.config(bg=custom_colors_dict['queen_blue'], borderwidth=2)
@@ -98,8 +98,8 @@ class FinishingButton(Button):
 
 class CnpjEntry(EntryFieldForm):
     
-    def __init__(self, window, label_text, **kwargs):
-        super().__init__(window, label_text, **kwargs)
+    def __init__(self, window, label_text, entry_name, **kwargs):
+        super().__init__(window, label_text, entry_name, **kwargs)
 
         cnpj_validate_command = (root_w.register(self.validade_entry), '%P')
 
@@ -134,8 +134,8 @@ class CnpjEntry(EntryFieldForm):
             return False
 
 class MoneyEntry(EntryFieldForm):
-    def __init__(self, window, label_text, **kwargs):
-        super().__init__(window, label_text, **kwargs)
+    def __init__(self, window, label_text, entry_name, **kwargs):
+        super().__init__(window, label_text, entry_name, **kwargs)
 
         money_validate_command = (root_w.register(self.validade_entry), '%P')
 
@@ -170,8 +170,8 @@ class MoneyEntry(EntryFieldForm):
             return False
 
 class QuantityEntry(EntryFieldForm):
-    def __init__(self, window, label_text, **kwargs):
-        super().__init__(window, label_text, **kwargs)
+    def __init__(self, window, label_text, entry_name, **kwargs):
+        super().__init__(window, label_text, entry_name, **kwargs)
 
         quant_validate_command = (root_w.register(self.validade_entry), '%P')
 
@@ -206,8 +206,8 @@ class QuantityEntry(EntryFieldForm):
             return False
 
 class TextEntry(EntryFieldForm):
-    def __init__(self, window, label_text, **kwargs):
-        super().__init__(window, label_text, **kwargs)
+    def __init__(self, window, label_text, entry_name, **kwargs):
+        super().__init__(window, label_text, entry_name, **kwargs)
 
         text_validate_command = (root_w.register(self.validade_entry), '%P')
 
@@ -236,21 +236,22 @@ class TextEntry(EntryFieldForm):
 
 entry_fields_frame = Frame(root_w)
 
-cnpj_remetente_entry_field = CnpjEntry(entry_fields_frame, "CNPJ REMETENTE")
+cnpj_remetente_entry_field = CnpjEntry(entry_fields_frame, "CNPJ REMETENTE", "cnpj_remetente")
 
-cnpj_destino_entry_field= CnpjEntry(entry_fields_frame, "CNPJ DESTINATARIO")
+cnpj_destino_entry_field = CnpjEntry(entry_fields_frame, "CNPJ DESTINATARIO", "cnpj_destino")
 
-valor_nota_entry_field = MoneyEntry(entry_fields_frame, "VALOR DA NOTA")
+valor_nota_entry_field = MoneyEntry(entry_fields_frame, "VALOR DA NOTA", "valor")
 
-peso_entry_field = QuantityEntry(entry_fields_frame, "PESO")
+peso_entry_field = QuantityEntry(entry_fields_frame, "PESO", "peso")
 
-volume_entry_field = QuantityEntry(entry_fields_frame, "VOLUME")
+volume_entry_field = QuantityEntry(entry_fields_frame, "VOLUME", "volume")
 
-medidas_entry_field = QuantityEntry(entry_fields_frame, "MEDIDAS")
+medidas_entry_field = QuantityEntry(entry_fields_frame, "MEDIDAS", "medidas")
 
-pagador_frete_entry_field = TextEntry(entry_fields_frame, "PAGADOR DO FRETE")
+pagador_frete_entry_field = TextEntry(entry_fields_frame, "PAGADOR DO FRETE", "pagador_frete")
 
-entrega_zona_rural_entry_field = TextEntry(entry_fields_frame, "ZONA RURAL")
+entrega_zona_rural_entry_field = TextEntry(entry_fields_frame, "ZONA RURAL", "tipo_zona")
+
 
 entry_fields_list = [
     cnpj_remetente_entry_field,
