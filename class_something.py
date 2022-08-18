@@ -82,6 +82,9 @@ class EntryFieldForm(Frame):
     def clear_entry_field_text(self):
         self.text_variable.set("")
 
+    def grid_entry(self):
+        self.grid(sticky=EW)
+
 class FinishingButton(Button):
     def __init__(self, window, button_display_text, **kwargs):
         super().__init__(window, **kwargs)
@@ -268,9 +271,7 @@ entry_fields_list = [
 ]
 
 for entry_field in entry_fields_list:
-    entry_field_index = entry_fields_list.index(entry_field)
-
-    entry_field.grid(row=entry_field_index, sticky=EW)
+    entry_field.grid_entry()
     
 # TODO: This seems odd. It doesn't feel right
 def clear_text_from_all_entry_fields():
