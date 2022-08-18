@@ -1,13 +1,6 @@
 
 from tkinter import *
 
-grey_color = 'grey'
-light_grey_color = 'light grey'
-red_color = 'red'
-blue_color = 'blue'
-green_color = 'green'
-yellow_color = 'yellow'
-
 custom_colors_dict = {
     'queen_blue':'#467599',
     'blizzard_blue':'#beecf6',
@@ -20,7 +13,7 @@ custom_colors_dict = {
 font_type = 'Arial'
 font_size = 20
 font_kind = 'bold'
-font_definitions = (font_type, font_size, font_kind)
+FONT_DEFINITIONS = (font_type, font_size, font_kind)
 
 CNPJ_CHAR_QUANTITY = 14
 MONEY_CHAR_QUANTITY = 10
@@ -31,7 +24,7 @@ root_w = Tk()
 
 
 class EntryFieldForm(Frame):
-    def __init__(self, window, entry_field_display_text = None, **kwargs):
+    def __init__(self, window, label_text, **kwargs):
         super().__init__(window, **kwargs)
 
         #TODO: using for debugging, remove later
@@ -47,14 +40,14 @@ class EntryFieldForm(Frame):
 
         # changing configuration for widgets
         self.text_label.config(
-            font=font_definitions,
-            text=entry_field_display_text +": ",
+            font=FONT_DEFINITIONS,
+            text=" " + label_text + " ",
             borderwidth=1,
             bg=custom_colors_dict["blizzard_blue"]
         )
 
         self.entry_box.config(
-            font=font_definitions,
+            font=FONT_DEFINITIONS,
             textvariable=self.text_variable,
             bg=custom_colors_dict['light_cyan']
         )
@@ -97,7 +90,7 @@ class FinishingButton(Button):
             fg="white",
             text=button_display_text,
             borderwidth=border_size,
-            font=font_definitions
+            font=FONT_DEFINITIONS
         )
 
     def function_to_call_when_pressed(self, function_address):
