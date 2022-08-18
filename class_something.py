@@ -333,5 +333,15 @@ buttons_frame.grid(row=1, column=0, sticky=EW)
 root_w.update()
 print(root_w.winfo_geometry())
 
+def terminate_entry_focus(bar):
+
+    widget_name = str(bar.widget.winfo_name())
+
+    not_a_entry = 'entry' not in widget_name
+
+    if not_a_entry:
+        root_w.focus_set()
+
+root_w.bind('<Button-1>', terminate_entry_focus)
 
 root_w.mainloop()
