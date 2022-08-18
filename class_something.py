@@ -357,6 +357,7 @@ def focus_on_previous_widget(event):
     prev_widget_to_focus.focus_set()
 
 root_w.bind('<Button-1>', terminate_entry_focus)
+root_w.bind('<Return>', focus_on_next_widget)
 root_w.bind('<Up>', focus_on_previous_widget)
 root_w.bind('<Down>', focus_on_next_widget)
 
