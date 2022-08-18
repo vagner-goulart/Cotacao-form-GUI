@@ -8,6 +8,15 @@ blue_color = 'blue'
 green_color = 'green'
 yellow_color = 'yellow'
 
+custom_colors_dict = {
+    'queen_blue':'#467599',
+    'blizzard_blue':'#beecf6',
+    'light_cyan':'#e9fff9',
+    'fire_engine':'#ce2029',
+    'oxfor_blue':'#000022',
+    'pakistan_green':'#006600'
+}
+
 font_type = 'Arial'
 font_size = 20
 font_kind = 'bold'
