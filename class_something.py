@@ -80,7 +80,7 @@ class EntryFieldForm(Frame):
         return self.winfo_name()
 
     def clear_entry_field_text(self):
-        self.text_variable.set("")
+        self.entry_box.delete(0, len(self.get_entry_text()))
 
     def grid_entry(self):
         self.grid(sticky=EW)
