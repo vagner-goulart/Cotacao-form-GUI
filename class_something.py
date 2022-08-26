@@ -15,7 +15,12 @@ font_size = 20
 font_kind = 'bold'
 FONT_DEFINITIONS = (font_type, font_size, font_kind)
 
-CNPJ_CHAR_QUANTITY = 14
+ALLOWED_STRINGS_LIST = ["",".", "/", "-"]
+CNPJ_STR_INDEX_LIST = [2, 6, 10, 15] # review this name
+
+CNPJ_MAX_DIGITS = 14
+CNPJ_MAX_CHARS = CNPJ_MAX_DIGITS + len(ALLOWED_STRINGS_LIST) + 1
+
 MONEY_CHAR_QUANTITY = 10
 QUANTITY_CHAR_QUANTITY = 10 #TODO: rename this variable
 TEXT_CHAR_QUANTITY = 50
@@ -110,37 +115,48 @@ class CnpjEntry(EntryFieldForm):
     def __init__(self, window, label_text, entry_name, **kwargs):
         super().__init__(window, label_text, entry_name, **kwargs)
 
-        cnpj_validate_command = (root_w.register(self.validade_entry), '%P')
+        cnpj_validate_command = (root_w.register(self.validade_entry), '%S', '%P', '%s', '%d')
 
         self.entry_box.config(
             validate='key', # this will invoke the validate command when a key is pressed
             validatecommand= cnpj_validate_command
         )
 
-    def validade_entry(self, entry_text_plus_new_char):
+    def validade_entry(self, char, txt_after_change, txt_before_change, action_type):
 
         """
         This will check if the new char can be added or removed from the entry.
         Ther rules are:
-            - it must be a digit
+            - it must be a digit (ish)
+             - strings will only be inserted internaly, not typed
             - the entry cannot exceed 14 digits
             - the entry can be blank
         """
 
-        text_size = len(entry_text_plus_new_char)
+        char_is_digit = char.isdigit()
+        after_change_length = len(txt_after_change)
+        before_change_length = len(txt_before_change)
 
-        entry_is_digit = entry_text_plus_new_char.isdigit()
-        entry_is_less_than_14_chars = text_size <= CNPJ_CHAR_QUANTITY
-        entry_is_empty = text_size == 0
+        char_deletion = action_type == '0'
+        allowed_str_typed = before_change_length not in CNPJ_STR_INDEX_LIST
 
-        entry_is_valid = entry_is_less_than_14_chars and (
-            entry_is_digit or entry_is_empty
-            )
+        char_is_allowed = (
+            char_is_digit
+            or (char in ALLOWED_STRINGS_LIST)
+            and not allowed_str_typed)
 
-        if entry_is_valid:
+        if char_deletion:
             return True
+        
         else:
-            return False
+            if after_change_length >= CNPJ_MAX_CHARS:
+                return False
+
+            elif char_is_allowed:
+                return True
+            
+            else:
+                return False
 
 class MoneyEntry(EntryFieldForm):
     def __init__(self, window, label_text, entry_name, **kwargs):
