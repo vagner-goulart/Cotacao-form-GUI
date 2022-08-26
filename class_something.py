@@ -85,6 +85,9 @@ class EntryFieldForm(Frame):
     def grid_entry(self):
         self.grid(sticky=EW)
 
+    def insert_char(self, index, char):
+        self.entry_box.insert(index, char)
+
 class FinishingButton(Button):
     def __init__(self, window, button_display_text, **kwargs):
         super().__init__(window, **kwargs)
