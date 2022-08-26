@@ -93,6 +93,11 @@ class EntryFieldForm(Frame):
     def insert_char(self, index, char):
         self.entry_box.insert(index, char)
 
+    def delete_last_char(self):
+        entry_text_length = len(self.get_entry_text())
+
+        self.entry_box.delete(entry_text_length - 1)
+
 class FinishingButton(Button):
     def __init__(self, window, button_display_text, **kwargs):
         super().__init__(window, **kwargs)
