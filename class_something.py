@@ -35,11 +35,13 @@ class EntryFieldForm(Frame):
         #TODO: using for debugging, remove later
         self.config(bg=custom_colors_dict['queen_blue'], borderwidth=2)
 
+        self.prev_value = ""
+
         # initializing the widgets inside the frame
         self.text_label = Label(self)
         self.entry_box = Entry(self)
 
-        # Creating a variable to hold the entr widget text
+        # Creating a variable to hold the entry widget text
         # TODO: Remove this starting value, it is here for tests only
         self.text_variable = StringVar(self.entry_box, value="test")
 
@@ -97,6 +99,17 @@ class EntryFieldForm(Frame):
         entry_text_length = len(self.get_entry_text())
 
         self.entry_box.delete(entry_text_length - 1)
+
+    def update_prev_value(self, new_value):
+        self.prev_value = new_value
+
+    def get_prev_value_last_char(self):
+        prev_value_is_empty = self.prev_value == ""
+
+        if prev_value_is_empty:
+            return ""
+        else:
+            return self.prev_value[-1]
 
 class FinishingButton(Button):
     def __init__(self, window, button_display_text, **kwargs):
