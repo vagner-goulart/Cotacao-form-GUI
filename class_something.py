@@ -140,6 +140,8 @@ class CnpjEntry(EntryFieldForm):
             validatecommand= cnpj_validate_command
         )
 
+        self.text_variable.trace_add('write', self.format_cnpj)
+
     def validade_entry(self, char, txt_after_change, txt_before_change, action_type):
 
         """
@@ -175,6 +177,42 @@ class CnpjEntry(EntryFieldForm):
             
             else:
                 return False
+
+    def format_cnpj(self, *i):
+
+        # If insertion, or deletion inside the callback function of trace_add
+        # trace_add won't be called again
+        
+        txt_length = len(self.get_entry_text())
+        prev_value_last_char = self.get_prev_value_last_char()
+
+        char_was_deleted = len(self.get_entry_text()) < len(self.prev_value)
+
+        new_char_was_inserted = not char_was_deleted
+
+        prev_val_last_char_not_digit = not prev_value_last_char.isdigit()
+
+        not_digit_deleted = char_was_deleted and prev_val_last_char_not_digit
+
+        if new_char_was_inserted:
+
+            if txt_length == 2:
+                self.insert_char(3, ".")
+
+            elif txt_length == 6:
+                self.insert_char(7, ".")
+
+            elif txt_length == 10:
+                self.insert_char(11, "/")
+
+            elif txt_length == 15:
+                self.insert_char(16, "-")
+
+        elif not_digit_deleted:
+            self.delete_last_char()
+
+        self.update_prev_value(self.get_entry_text())
+
 
 class MoneyEntry(EntryFieldForm):
     def __init__(self, window, label_text, entry_name, **kwargs):
